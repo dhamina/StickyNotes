@@ -1,0 +1,23 @@
+.panel__header {
+    padding: 4px;
+    background: #0F479A;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+  }
+  .close {
+    width: 35px;
+    height: 35px;
+    font-size:40px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    padding-bottom: 5px;
+    cursor: pointer;
+  }
+  .close:hover {
+    opacity: 0.8;
+  }
