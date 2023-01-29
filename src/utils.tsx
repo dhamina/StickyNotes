@@ -28,7 +28,6 @@ export const Dimensions=[
   };
 
   export const setDimensions=(direction: string,panel: HTMLInputElement,width: number,height: number,x: number,y: number,movementX: number,movementY: number)=>{
-    console.log(direction)
     switch (direction) {
         case 'topLeft':
           resizeTop(panel,height,movementY,y);

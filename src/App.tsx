@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { StickyNote } from "./components/StickyNote/StickyNote";
+import { uploadFilesToCloud } from "./servies/notes.service";
 
 export default function App() {
   const [notes, setNotes] = useState<Array<{ id: number; desc: string }>>([{ id: Date.now(), desc: '' }]);
@@ -43,15 +44,7 @@ export default function App() {
 
   //Async function calling Post to send notes
   async function onSaveToCloud (){
-    const rawResponse = await fetch('https://httpbin.org/post', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(notes)
-    });
-    const response = await rawResponse.json();
+    const response = await uploadFilesToCloud(JSON.stringify(notes));
     response ? alert('Notes Saved Successfully!') :alert('Notes was not Saved Successfully!')
   }
 
