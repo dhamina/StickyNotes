@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ResizerProps } from '../../interfaces/Interface';
-import { Direction } from '../../utils';
+import { Dimensions } from '../../utils';
 
 
 import './style.css'
@@ -43,21 +43,9 @@ export const Resizer = ({  onResize }: ResizerProps) =>{
 
   return (
     <>
-      <div className="top-left" onMouseDown={handleMouseDown(Direction.TopLeft)}></div>
-
-      <div className="top" onMouseDown={handleMouseDown(Direction.Top)}></div>
-
-      <div className="top-right" onMouseDown={handleMouseDown(Direction.TopRight)}></div>
-      
-      <div className="right" onMouseDown={handleMouseDown(Direction.Right)}></div>
-
-      <div className="right-bottom" onMouseDown={handleMouseDown(Direction.BottomRight)}></div>
-
-      <div className="bottom" onMouseDown={handleMouseDown(Direction.Bottom)}></div>
-
-      <div className="bottom-left" onMouseDown={handleMouseDown(Direction.BottomLeft)}></div>
-
-      <div className="left" onMouseDown={handleMouseDown(Direction.Left)}></div>
+      {
+        Dimensions.map((item:any)=><div className={item.class} onMouseDown={handleMouseDown(item.id)}></div> )
+      }
     </>
   );
 };

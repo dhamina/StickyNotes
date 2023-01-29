@@ -1,19 +1,18 @@
-import React, { useRef } from "react";
+import React, {  useRef, useState } from "react";
 import { setDimensions } from "../../utils";
 import Header from "../Header/Header";
 import { StickyNoteProps } from "../../interfaces/Interface";
 import "./style.css";
 import { Resizer } from "../Resizer/Resizer";
 
-export const StickyNote = ({ onClose }: StickyNoteProps) =>{
+export const StickyNote = ({ onAddNote,note,index, onClose, onTextChange,onUpload }: StickyNoteProps) =>{
   const panelRef = useRef<HTMLInputElement>(null);
+  const [textColor,setTextColor] = useState<string>('yellow');
 
+  // Drag the notes handler
   const handleDrag = (movementX: number, movementY: number) => {
     const panel = panelRef?.current;
-    
     if (!panel) return;
-  
-  
     const { x, y,right,bottom} =  panel.getBoundingClientRect();
     const left = x + movementX
     const top= y + movementY
@@ -27,25 +26,33 @@ export const StickyNote = ({ onClose }: StickyNoteProps) =>{
     }
   };
 
-  const handleResize = (direction: String, movementX: Number, movementY:Number) => {
+  // Resize handler for the notes
+  const handleResize = (direction: string, movementX: number, movementY:number) => {
     const panel = panelRef.current;
     if (!panel) return;
     const { width, height, x, y } = panel.getBoundingClientRect();
-    if(width>=200 && height >= 200){
+    if(width>=250 && height >= 300){
       setDimensions(direction,panel,width,height,x,y,movementX,movementY)
     }
     else{
-      panel.style.width = '200px';
-      panel.style.height = '200px'
+      panel.style.width = '250px';
+      panel.style.height = '300px'
     }
   };
 
+  const onColorChange = (color:string)=>{
+  setTextColor(color)
+  }
+  const onDescriptionChange = (e:any) =>{
+    onTextChange(e,note.id)
+  }
+ 
   return (
-    <div className="panel" ref={panelRef}>
-      <div className="panel__container">
+    <div style={{top: 16*index+'px',left:16*index+'px'}} className={`panel ${note.id}`} ref={panelRef}>
+      <div className={`panel__container ${textColor}`}>
         <Resizer onResize={handleResize} />
-        <Header onClose={onClose} onDrag={handleDrag} />
-        <div className="panel__content"> <textarea className="sticky__cn__txtarea"></textarea> </div>
+        <Header onUpload={onUpload} onAddNote={onAddNote} onColorChange={onColorChange} onClose={onClose} onDrag={handleDrag} />
+        <div className="panel__content"> <textarea value={note.desc} onChange={onDescriptionChange} className={`sticky__cn__txtarea ${textColor}`}></textarea> </div>
       </div>
     </div>
   );
