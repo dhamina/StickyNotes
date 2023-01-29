@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Demo 
+
+This project demo is available on https://sticky-notes-steel.vercel.app/
 ## Available Scripts
 
 In the project directory, you can run:
