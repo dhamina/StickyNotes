@@ -3,7 +3,7 @@ import "./App.css";
 import { StickyNote } from "./components/StickyNote/StickyNote";
 
 export default function App() {
-  const [notes, setNotes] = useState<Array<{ id: number; desc: string }>>([]);
+  const [notes, setNotes] = useState<Array<{ id: number; desc: string }>>([{ id: Date.now(), desc: '' }]);
   const binRef = useRef<HTMLInputElement>(null);
 
   //function to add new Note
