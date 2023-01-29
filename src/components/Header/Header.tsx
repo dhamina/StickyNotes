@@ -65,7 +65,7 @@ export const Header = ({
           title="Upload to cloud"
           className="close"
           alt="upload"
-          src="/upload.png"
+          src="https://ik.imagekit.io/bojqexpon/Upload.png?ik-sdk-version=javascript-1.4.3&updatedAt=1675014937083"
           onClick={() => onUpload()}
         />
         <div title="Close" className="close" onClick={() => onClose()}>
