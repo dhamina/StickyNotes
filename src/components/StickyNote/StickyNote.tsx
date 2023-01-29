@@ -52,7 +52,7 @@ export const StickyNote = ({ onAddNote,note,index, onClose, onTextChange,onUploa
       <div className={`panel__container ${textColor}`}>
         <Resizer onResize={handleResize} />
         <Header onUpload={onUpload} onAddNote={onAddNote} onColorChange={onColorChange} onClose={onClose} onDrag={handleDrag} />
-        <div className="panel__content"> <textarea value={note.desc} onChange={onDescriptionChange} className={`sticky__cn__txtarea ${textColor}`}></textarea> </div>
+        <div className="panel__content"> <textarea aria-label="Description" value={note.desc} onChange={onDescriptionChange} className={`sticky__cn__txtarea ${textColor}`}></textarea> </div>
       </div>
     </div>
   );
